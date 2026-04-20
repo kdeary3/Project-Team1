@@ -1,0 +1,16 @@
+services:
+  postgres-db:
+    container_name: ratemyboss
+    image: postgres # use latest official postgres version
+    restart: always
+    environment:
+      POSTGRES_USER: ratemyboss
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ratemyboss
+      POSTGRES_HOST_AUTH_METHOD: password
+    ports:
+      - "5445:5432"
+
+volumes:
+  postgresql_data:
+    driver: local
