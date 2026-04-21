@@ -1,9 +1,7 @@
 package mil.t2com.moda.ratemyboss.review;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import mil.t2com.moda.ratemyboss.leader.Leader;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -19,19 +17,25 @@ public class Review {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @ManyToOne
+    @JoinColumn(name = "leader_id")
+    private Leader leader;
+
     public Review() {
     }
 
-    public Review(Integer rating, String description) {
+    public Review(Integer rating, String description, Leader leader) {
         this.rating = rating;
         this.description = description;
+        this.leader = leader;
     }
 
-    public Review(Long id, Integer rating, String description, LocalDateTime createdAt) {
+    public Review(Long id, Integer rating, String description, LocalDateTime createdAt, Leader leader) {
         this.id = id;
         this.rating = rating;
         this.description = description;
         this.createdAt = createdAt;
+        this.leader = leader;
     }
 
     public Long getId() {
@@ -56,6 +60,10 @@ public class Review {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public Leader getLeader() {
+        return leader;
     }
 
 }

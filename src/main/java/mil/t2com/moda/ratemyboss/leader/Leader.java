@@ -1,6 +1,7 @@
 package mil.t2com.moda.ratemyboss.leader;
 
 import jakarta.persistence.*;
+import mil.t2com.moda.ratemyboss.review.Review;
 
 @Entity
 public class Leader {
@@ -33,5 +34,21 @@ public class Leader {
 
     public String getJobTitle() {
         return jobTitle;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 }
