@@ -27,6 +27,12 @@ public class Review {
         this.description = description;
     }
 
+    public Review(Integer rating, String description, LocalDateTime createdAt) {
+        this.rating = rating;
+        this.description = description;
+        this.createdAt = createdAt;
+    }
+
     public Review(Long id, Integer rating, String description, LocalDateTime createdAt) {
         this.id = id;
         this.rating = rating;
