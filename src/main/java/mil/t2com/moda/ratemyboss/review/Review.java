@@ -62,8 +62,4 @@ public class Review {
         return createdAt;
     }
 
-    public Leader getLeader() {
-        return leader;
-    }
-
 }
