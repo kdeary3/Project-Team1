@@ -13,9 +13,25 @@ public class Leader {
     private String jobTitle;
     protected Leader() {}
 
-    public Leader(String jobTitle, String lastName, String firstName) {
+    public Leader(String firstName, String lastName, String jobTitle) {
         this.jobTitle = jobTitle;
         this.lastName = lastName;
         this.firstName = firstName;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
     }
 }
