@@ -1,5 +1,6 @@
 package mil.t2com.moda.ratemyboss.review;
 
+import mil.t2com.moda.ratemyboss.leader.Leader;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,9 +36,13 @@ class ReviewServiceTest {
 
     @Test
     void shouldGetAllReviews() {
-        reviewOne = new Review(1, "My boss has no integrity.", LocalDateTime.now());
-        reviewTwo = new Review(5, "My boss gave me every 4-day off last year!", LocalDateTime.now());
-        reviewThree = new Review(3, "I'm not sure what my boss is doing 25% of the time.", LocalDateTime.now());
+        Leader leader = new Leader("Keno", "Deary", "Chief");
+        Leader leader1 = new Leader("James", "Larimer", "Company Commander");
+        leader.setId(1L);
+        leader1.setId(2L);
+        reviewOne = new Review(1, "My boss has no integrity.", LocalDateTime.now(), leader);
+        reviewTwo = new Review(5, "My boss gave me every 4-day off last year!", LocalDateTime.now(), leader);
+        reviewThree = new Review(3, "I'm not sure what my boss is doing 25% of the time.", LocalDateTime.now(), leader1);
 
         reviews.addAll(List.of(reviewOne, reviewTwo, reviewThree));
         when(reviewRepository.findAll()).thenReturn(reviews);

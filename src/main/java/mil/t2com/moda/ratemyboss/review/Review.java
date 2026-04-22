@@ -38,6 +38,9 @@ public class Review {
         this.leader = leader;
     }
 
+    public Review(int i, String s, LocalDateTime now, Leader leader) {
+    }
+
     public Long getId() {
         return id;
     }
