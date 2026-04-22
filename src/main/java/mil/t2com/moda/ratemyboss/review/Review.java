@@ -21,7 +21,7 @@ public class Review {
     @JoinColumn(name = "leader_id")
     private Leader leader;
 
-    public Review() {
+    public Review(int rating, String description, LocalDateTime now) {
     }
 
     public Review(Integer rating, String description, Leader leader) {
