@@ -17,7 +17,6 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-
 class ReviewServiceTest {
 
     List<Review> reviews = new ArrayList<>();
@@ -31,7 +30,6 @@ class ReviewServiceTest {
 
     @Mock
     private ReviewRepository reviewRepository;
-
 
 
     @Test
@@ -52,6 +50,16 @@ class ReviewServiceTest {
         verify(reviewRepository, only()).findAll();
         assertThat(results).isEqualTo(reviews);
 
+    }
+
+    @Test
+    void shouldSaveReview() {
+        Leader leader = new Leader("Keno", "Deary", "Chief");
+        reviewOne = new Review(1, "My boss has no integrity.", LocalDateTime.now(), leader);
+        when(reviewRepository.save(reviewOne)).thenReturn(reviewOne);
+        Review result = reviewService.saveReview(reviewOne);
+        assertThat(result).isEqualTo(reviewOne);
+        verify(reviewRepository, only()).save(reviewOne);
     }
 
 
