@@ -38,6 +38,17 @@ public class Review {
         this.leader = leader;
     }
 
+    public Review(Integer rating, String description, LocalDateTime createdAt, Leader leader) {
+        this.rating = rating;
+        this.description = description;
+        this.createdAt = createdAt;
+        this.leader = leader;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
