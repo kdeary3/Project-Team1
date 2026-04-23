@@ -1,4 +1,5 @@
 import LeadersDropdown from "./components/LeadersDropdown.tsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
 

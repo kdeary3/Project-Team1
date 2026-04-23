@@ -1,6 +1,7 @@
 package mil.t2com.moda.ratemyboss.leader;
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -25,6 +26,13 @@ public class LeaderController {
         return leaderService.getAllLeaders();
     }
 
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Leader> getLeaderById(@PathVariable Long id) {
+        try {
+            Leader leader = leaderService.getLeaderById(id);
+            return ResponseEntity.ok(leader);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
