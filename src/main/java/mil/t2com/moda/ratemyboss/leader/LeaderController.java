@@ -10,7 +10,7 @@ import java.util.List;
 // All routes in this controller start with this base path
 @RequestMapping("/api/leaders")
 // Allow requests from the React frontend running on a different port
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class LeaderController {
 
     private final LeaderService leaderService;
