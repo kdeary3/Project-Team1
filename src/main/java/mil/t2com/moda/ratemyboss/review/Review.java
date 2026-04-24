@@ -1,5 +1,6 @@
 package mil.t2com.moda.ratemyboss.review;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import mil.t2com.moda.ratemyboss.leader.Leader;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,7 +19,6 @@ public class Review {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "leader_id")
     private Leader leader;
 
     public Review() {
@@ -77,4 +77,11 @@ public class Review {
         return createdAt;
     }
 
+    public Leader getLeader() {
+        return leader;
+    }
+
+    public void setLeader(Leader leader) {
+        this.leader = leader;
+    }
 }

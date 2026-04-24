@@ -1,7 +1,11 @@
 package mil.t2com.moda.ratemyboss.leader;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import mil.t2com.moda.ratemyboss.review.Review;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Leader {
@@ -12,8 +16,10 @@ public class Leader {
     private String firstName;
     private String lastName;
     private String jobTitle;
-    protected Leader() {}
+//    @OneToMany
+//    private List<Review> reviews;
 
+    protected Leader() {}
     public Leader(String firstName, String lastName, String jobTitle) {
         this.jobTitle = jobTitle;
         this.lastName = lastName;
