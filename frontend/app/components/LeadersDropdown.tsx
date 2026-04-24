@@ -1,4 +1,4 @@
-import {useEffect, useState, type JSXElementConstructor, type ReactElement, type ReactNode, type ReactPortal, type SetStateAction} from "react";
+import {useEffect, useState} from "react";
 import type {Leader} from "~/leader/LeaderType";
 
 const LeadersDropdown = () => {
@@ -21,7 +21,7 @@ const LeadersDropdown = () => {
             <select name="leaderSelect" id="leaderSelect" onChange={(e) => {
                 setSelectLeader(e.target.value)}}>
                 {leaders.map((leader) => (
-                        <option>{leader.firstName}</option>
+                        <option key={leader.id}>{leader.firstName}</option>
                         )
                     )}
             </select>

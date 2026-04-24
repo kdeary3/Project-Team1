@@ -10,7 +10,7 @@ function NavBar() {
                flex items-center justify-between h-16">
 
                 {/* Brand name */}
-                <span className="text-xl font-bold tracking-tighttext-gray-900 dark:text-white">Rate My Boss</span>
+                <span className="text-xl font-bold tracking-tighttext-gray-900 dark:text-white">Rate My Leader</span>
 
                 {/* Links + toggle — flex row, gap-6 between items */}
                 <div className="flex items-center gap-6">
