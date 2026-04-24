@@ -14,11 +14,11 @@ export default function ReviewForm() {
             <h1>Create a review</h1>
             <LeadersDropdown/>
             <form action="" onSubmit={handleSubmit}>
-                <label htmlFor=""> Enter a review.
-                    <input type="text"/>
+                <label htmlFor="review"> Enter a review.
+                    <input type="text" id={'review'}/>
                 </label> <br/>
-                <label htmlFor=""> Enter a rating.
-                    <select name="" id="">
+                <label htmlFor="rating"> Enter a rating.
+                    <select name="rating" id="rating">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
