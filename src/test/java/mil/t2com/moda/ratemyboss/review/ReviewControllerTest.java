@@ -26,10 +26,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @WebMvcTest(ReviewController.class)
 class ReviewControllerTest {
     Review review1;
+    Review review2;
+    Review review3;
     @BeforeEach
     void setUp() {
 
@@ -54,5 +57,24 @@ class ReviewControllerTest {
                 .content(objectMapper.writeValueAsString(review1)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.description").value("My boss has no integrity."));
+    }
+    @Test
+    void shouldGetAllReviews() throws Exception{
+        List<Review> reviews = new ArrayList<>();
+        Leader leader = new Leader("Keno", "Deary", "Chief");
+        review1 = new Review(1, "My boss has no integrity.", LocalDateTime.now(), leader);
+        review1.setId(1L);
+        review2 = new Review(2, "He smells funny.", LocalDateTime.now(), leader);
+        review2.setId(2L);
+        reviews.add(review1);
+        reviews.add(review2);
+        when(reviewService.findAllReviews()).thenReturn(reviews);
+
+        mockMvc.perform(get("/api/v1/review"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].description").value("My boss has no integrity."))
+                .andExpect(jsonPath("$[1].rating").value(2));
+
+
     }
 }
