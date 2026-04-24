@@ -1,19 +1,62 @@
 import {Link} from "react-router";
 import LeadersDropdown from "../components/LeadersDropdown";
+import * as Yup from "yup"
+import {date, number, string} from "yup";
+import {useForm} from "react-hook-form";
+import {yupResolver} from "@hookform/resolvers/yup/src";
+import type {Review} from "./ReviewType.ts"
+import {useEffect} from "react";
+import {axiosSaveReview} from "./ReviewService.ts"
 
-export default function ReviewForm() {
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        console.log("submitted")
+const validation = Yup.object({
+    id: number(),
+    rating: number()
+        .required("Enter rating"),
+    description: string()
+        .required("Enter description"),
+    created_at: date(),
+    leader_id: number()
+})
 
+
+type ReviewFormProps = {
+    isOpen: boolean
+    onClose: () => void
+    onSuccess: () => void
+}
+
+
+export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: {errors}
+    } = useForm<Review>({
+        mode: "onBlur",
+        resolver: yupResolver(validation)
+    })
+
+    useEffect(() => {
+        if (!isOpen) {
+            reset()
+        }
+    }, [isOpen]);
+
+    const onSubmit = async (data: Review) => {
+        await axiosSaveReview(data)
+        reset()
+        onSuccess?.()
+        onClose()
     }
+
 
     return (
         <>
             <h1>Create a review</h1>
             <LeadersDropdown/>
-            <form action="" onSubmit={handleSubmit}>
+            <form action="" onSubmit={handleSubmit(data => onSubmit(data))}>
                 <label htmlFor="review"> Enter a review.
                     <input type="text" id={'review'}/>
                 </label> <br/>
@@ -31,3 +74,4 @@ export default function ReviewForm() {
         </>
     );
 }
+
