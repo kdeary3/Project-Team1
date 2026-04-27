@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/src";
 import type {Review} from "./ReviewType.ts"
 import {useEffect} from "react";
-import {axiosSaveReview} from "./ReviewService.ts"
+import {axiosSaveReview} from "./ReviewService"
 
 
 const validation = Yup.object({
@@ -23,7 +23,7 @@ const validation = Yup.object({
 type ReviewFormProps = {
     isOpen: boolean
     onClose: () => void
-    onSuccess: () => void
+    onSuccess?: () => void
 }
 
 
