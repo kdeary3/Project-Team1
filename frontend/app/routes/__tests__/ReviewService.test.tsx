@@ -2,7 +2,7 @@ import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
 import { beforeAll, afterAll, afterEach ,describe, it, expect} from 'vitest';
 import type {ReviewType} from "~/review/ReviewType";
-import {axiosGetAllReviews, getAllReviews} from "~/review/ReviewService";
+import { getAllReviews} from "~/review/ReviewService";
 
 
 
@@ -140,11 +140,10 @@ describe('review service', () => {
 
         server.use(
             http.get('/api/v1/review', ()=>
-                HttpResponse.json(expected, {status: 201})
+                HttpResponse.json(expected, {status: 200})
             )
         )
         expect(await getAllReviews() )
             .toEqual(expected);
-
     });
 });
