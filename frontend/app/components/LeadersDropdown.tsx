@@ -15,7 +15,6 @@ const LeadersDropdown = ({onLeaderSelect}) => {
             .then(data => setLeaders(data))
     }, []);
 
-
     return (
         <div>
             <label htmlFor="leaderSelect">

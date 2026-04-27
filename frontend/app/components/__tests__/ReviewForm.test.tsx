@@ -12,6 +12,7 @@ describe('Review Form', () => {
         return false
     }
 
+
     it('should display form heading and fields', () => {
         render(<ReviewForm
             isOpen={true}
