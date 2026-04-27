@@ -59,9 +59,15 @@ describe('Review Form', () => {
                 onClose={() => setIsModalOpen(false)}
             />)
 
+            screen.logTestingPlaygroundURL()
+
+            const leader = screen.getByRole('heading', {name: ""})
             const review = screen.getByRole('textbox', {name: /review/i})
             const rating = screen.getByRole('combobox', {name: /rating/i})
             const submit = screen.getByRole('button', {name: /submit/i})
+
+            await user.selectOptions(leader, initialReview.leader_id.toString())
+            expect(leader).toHaveValue("2")
 
             await user.type(review, initialReview.description)
             expect(review).toHaveValue("good dude")
@@ -71,6 +77,10 @@ describe('Review Form', () => {
 
             await user.click(submit)
             expect(reviewApi.axiosSaveReview).toHaveBeenCalledOnce()
+
+        });
+
+        it('should pull selected leader\'s id', () => {
 
         });
 

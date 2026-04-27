@@ -5,7 +5,7 @@ import {date, number, string} from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/src";
 import type {Review} from "./ReviewType.ts"
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {axiosSaveReview} from "./ReviewService"
 
 
@@ -19,15 +19,15 @@ const validation = Yup.object({
     leader_id: number()
 })
 
-
 type ReviewFormProps = {
     isOpen: boolean
     onClose: () => void
     onSuccess?: () => void
 }
 
-
 export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
+    const [leaderId, setLeaderId] = useState("")
+
     const {
         register,
         handleSubmit,
@@ -50,18 +50,21 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         onSuccess?.()
         onClose()
     }
-
-
+    console.log(leaderId)
     return (
         <>
             <h1>Create a review</h1>
-            <LeadersDropdown/>
+            <LeadersDropdown onLeaderSelect={setLeaderId}/>
+            <h1 id={"selectedLeader"}>{leaderId}</h1>
             <form action="" onSubmit={handleSubmit(data => onSubmit(data))}>
                 <label htmlFor="review"> Enter a review.
-                    <input type="text" id={'review'}{...register('description')}/>
+                    <input type="text"
+                           id={'review'}
+                           {...register('description')}/>
                 </label> <br/>
                 <label htmlFor="rating"> Enter a rating.
-                    <select id="rating" {...register("rating")}>
+                    <select id="rating"
+                            {...register("rating")}>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -69,7 +72,8 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
                         <option value="5">5</option>
                     </select>
                 </label> <br/>
-                <button type={"submit"}>Submit</button>
+                <button
+                    type={"submit"}>Submit</button>
             </form>
         </>
     );

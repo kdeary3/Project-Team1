@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import type {Leader} from "~/leader/LeaderType";
 
-const LeadersDropdown = () => {
+const LeadersDropdown = ({onLeaderSelect}) => {
 
     const [selectLeader, setSelectLeader] = useState("")
 
@@ -18,14 +18,19 @@ const LeadersDropdown = () => {
 
     return (
         <div>
+            <label htmlFor="leaderSelect">
             <select name="leaderSelect" id="leaderSelect" onChange={(e) => {
-                setSelectLeader(e.target.value)}}>
+                setSelectLeader(e.target.value);
+                const leaderId = e.target.value;
+                onLeaderSelect(leaderId);
+            }}>
                 {leaders.map((leader) => (
                         <option key={leader.id}>{leader.firstName}</option>
                         )
                     )}
             </select>
-            <h1>Selected Leader: <strong>{selectLeader || "None Selected"}</strong></h1>
+            <h1>Selected Leader:</h1>
+            </label>
         </div>
     );
 };

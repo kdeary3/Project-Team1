@@ -13,11 +13,6 @@ export default function Home() {
     return (
         <>
             <h1>Reviews</h1>
-            <ReviewForm
-                isOpen={true}
-                onClose={() => {}}
-                onSuccess={() => {}}
-            />
         </>
     );
 }
