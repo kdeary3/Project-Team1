@@ -23,8 +23,8 @@ describe('NavBar', () => {
         );
 
         screen.logTestingPlaygroundURL()
-        expect(screen.getByText('Review')).toBeInTheDocument()
-        expect(screen.getByText('Leader')).toBeInTheDocument()
+        expect(screen.getByText('Create Review')).toBeInTheDocument()
+        expect(screen.getByText('Home')).toBeInTheDocument()
 
     });
 });

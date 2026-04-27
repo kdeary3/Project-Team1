@@ -4,9 +4,10 @@ import * as Yup from "yup"
 import {date, number, string} from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/src";
-import type {Review} from "./ReviewType.ts"
 import {useEffect} from "react";
-import {axiosSaveReview} from "./ReviewService.ts"
+import {axiosSaveReview} from "~/review/ReviewService"
+import type {ReviewType} from "~/review/ReviewType";
+
 
 
 const validation = Yup.object({
@@ -33,7 +34,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         handleSubmit,
         reset,
         formState: {errors}
-    } = useForm<Review>({
+    } = useForm<ReviewType>({
         mode: "onBlur",
         resolver: yupResolver(validation)
     })
@@ -44,7 +45,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         }
     }, [isOpen]);
 
-    const onSubmit = async (data: Review) => {
+    const onSubmit = async (data: ReviewType) => {
         await axiosSaveReview(data)
         reset()
         onSuccess?.()

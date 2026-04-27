@@ -5,7 +5,7 @@ type ReviewCardProps = {
 };
 export default function ReviewCard({review}: ReviewCardProps    ) {
     return (
-        <div className="review-card">
+        <div data-testid={"card"} className="review-card">
             <p>{review.leader.firstName}</p>
             <p>{review.leader.lastName}</p>
             <p>{review.rating}</p>

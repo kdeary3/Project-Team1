@@ -12,7 +12,7 @@ describe('Review Form', () => {
 
     it('should display form heading and fields', () => {
         // render(<ReviewForm onClose={() => setIsModalOpen(false)} isOpen={true}/>)
-        render(<ReviewForm/>)
+        render(<ReviewForm />)
 
         expect(screen.getByRole('heading', {name: /create a review/i})).toBeInTheDocument()
         expect(screen.getByLabelText(/Enter A Review/i)).toBeInTheDocument()

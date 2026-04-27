@@ -1,4 +1,4 @@
-import {describe, it, expect, assert} from "vitest";
+import {describe, it, expect} from "vitest";
 import { render, screen } from "@testing-library/react";
 import ReviewCard from "~/components/ReviewCard";
 import type {ReviewType} from "~/review/ReviewType";

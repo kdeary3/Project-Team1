@@ -15,7 +15,6 @@ const LeadersDropdown = () => {
             .then(data => setLeaders(data))
     }, []);
 
-
     return (
         <div>
             <select name="leaderSelect" id="leaderSelect" onChange={(e) => {
