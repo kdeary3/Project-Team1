@@ -9,7 +9,6 @@ import {axiosSaveReview} from "~/review/ReviewService"
 import type {ReviewType} from "~/review/ReviewType";
 
 
-
 const validation = Yup.object({
     id: number(),
     rating: number()
@@ -24,7 +23,7 @@ const validation = Yup.object({
 type ReviewFormProps = {
     isOpen: boolean
     onClose: () => void
-    onSuccess: () => void
+    onSuccess?: () => void
 }
 
 
@@ -37,7 +36,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
     } = useForm<ReviewType>({
         mode: "onBlur",
         resolver: yupResolver(validation)
-    })
+    });
 
     useEffect(() => {
         if (!isOpen) {
@@ -59,10 +58,10 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
             <LeadersDropdown/>
             <form action="" onSubmit={handleSubmit(data => onSubmit(data))}>
                 <label htmlFor="review"> Enter a review.
-                    <input type="text" id={'review'}/>
+                    <input type="text" id={'review'}{...register('description')}/>
                 </label> <br/>
                 <label htmlFor="rating"> Enter a rating.
-                    <select name="rating" id="rating">
+                    <select id="rating" {...register("rating")}>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -76,3 +75,4 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
     );
 }
 
+export default ReviewForm;

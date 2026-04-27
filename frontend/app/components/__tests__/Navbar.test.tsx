@@ -15,6 +15,7 @@ describe('NavBar', () => {
         screen.logTestingPlaygroundURL()
         expect(screen.getByText('Rate My Leader')).toBeInTheDocument();
     });
+
     it('should display leader and review in navbar', () => {
         render(
             <MemoryRouter>
@@ -23,6 +24,8 @@ describe('NavBar', () => {
         );
 
         screen.logTestingPlaygroundURL()
+        expect(screen.getByText('Home')).toBeInTheDocument()
+        expect(screen.getByText('Rating Form')).toBeInTheDocument()
         expect(screen.getByText('Create Review')).toBeInTheDocument()
         expect(screen.getByText('Home')).toBeInTheDocument()
 
