@@ -21,7 +21,7 @@ const LeadersDropdown = ({onLeaderSelect}) => {
     console.log(filteredLeaders)
 
     return (
-        <div >
+        <div>
             <label htmlFor="leaderSelect">
                 <select onChange={(e) => onLeaderSelect(e.target.value)}>
                     <option value="ALL">All Leaders</option>

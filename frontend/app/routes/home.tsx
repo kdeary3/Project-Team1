@@ -17,6 +17,14 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
     const [selectedLeaderId, setSelectedLeaderId] = useState("ALL")
     const [reviews, setReviews] = useState<ReviewType[]>([])
+    const refreshData = async () => {
+        try {
+            const data = await getAllReviews();
+            setReviews(data);
+        } catch (error) {
+            console.error('Failed to fetch tasks:', error);
+        }
+    };
 
     useEffect(() => {
         getAllReviews().then(setReviews)
