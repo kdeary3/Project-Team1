@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import type {Leader} from "~/leader/LeaderType";
 
-const LeadersDropdown = ({onLeaderSelect}) => {
+const LeadersDropdown = ({onLeaderSelect}: any) => {
 
     const [filterLeader, setFilterLeader] = useState("ALL")
     const [leaders, setLeaders] = useState<Leader[]>([])
