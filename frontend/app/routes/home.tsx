@@ -13,6 +13,7 @@ export function meta({}: Route.MetaArgs) {
         {name: "description", content: "Welcome to React Router!"},
     ];
 }
+
 export default function Home() {
     const [reviews, setReviews] = useState<ReviewType[]>([])
     const refreshData = async () => {
@@ -29,16 +30,14 @@ export default function Home() {
     }, []);
     return (
         <>
-            <h1>Reviews</h1>
-            <ReviewForm
-                isOpen={true}
-                onClose={() => {}}
-                onSuccess={() => {}}
-            />
-            <LeadersDropdown/>
-            {reviews.map(review => (
-                <ReviewCard key={review.id} review={review} />
-            ))}
+            <div className={"container p-5"}>
+                <h1 className={"text-2xl/7 font-bold text-black sm:truncate sm:text-3xl sm:tracking-tight"}>Reviews</h1>
+                <LeadersDropdown/>
+                <h3 className={"text-2xl/7 font-bold text-black sm:truncate sm:text-3xl sm:tracking-tight"}>Read Existing Reviews</h3>
+                {reviews.map(review => (
+                    <ReviewCard key={review.id} review={review}/>
+                ))}
+            </div>
         </>
     );
 }

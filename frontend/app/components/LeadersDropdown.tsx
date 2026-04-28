@@ -24,7 +24,7 @@ const LeadersDropdown = ({onLeaderSelect}) => {
                 onLeaderSelect(leaderId);
             }}>
                 {leaders.map((leader) => (
-                        <option key={leader.id}>{leader.firstName}</option>
+                        <option key={leader.id} value={leader.id}>{leader.firstName}</option>
                         )
                     )}
             </select>

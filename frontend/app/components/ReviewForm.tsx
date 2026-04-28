@@ -1,12 +1,12 @@
-import {Link} from "react-router";
 import LeadersDropdown from "../components/LeadersDropdown";
 import * as Yup from "yup"
-import {date, number, string} from "yup";
+import {date, number, string} from "yup"
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/src";
 import type {Review} from "./ReviewType.ts"
 import {useEffect, useState} from "react";
 import {axiosSaveReview} from "./ReviewService"
+import type {Leader} from "~/leader/LeaderType";
 
 
 const validation = Yup.object({
@@ -26,7 +26,16 @@ type ReviewFormProps = {
 }
 
 export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
-    const [leaderId, setLeaderId] = useState("")
+    const [leaders, setLeaders] = useState<Leader[]>([])
+
+    const url = 'http://localhost:8080'
+
+    async function getLeaders(): Promise<Leader[]> {
+        let leaderData = await  fetch(`${url}/api/leaders`)
+        return leaderData.json()
+
+    }
+    const [leaderId, setLeaderId] = useState(0)
 
     const {
         register,
@@ -45,10 +54,16 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
     }, [isOpen]);
 
     const onSubmit = async (data: Review) => {
+        let leaders: Leader[] = await getLeaders();
+        data.leader = leaders.find((leader) => {
+           if (leader.id == leaderId) {
+               return leader
+           }
+       })
+        //Todo add success or error
         await axiosSaveReview(data)
         reset()
-        onSuccess?.()
-        onClose()
+
     }
     console.log(leaderId)
     return (
