@@ -4,7 +4,7 @@ import * as Yup from "yup"
 import {date, number, string} from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/src";
-import type {Review} from "./ReviewType.ts"
+import type {ReviewType} from "~/review/ReviewType"
 import {useEffect, useState} from "react";
 import {axiosSaveReview} from "./ReviewService"
 
@@ -33,7 +33,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         handleSubmit,
         reset,
         formState: {errors}
-    } = useForm<Review>({
+    } = useForm<ReviewType>({
         mode: "onBlur",
         resolver: yupResolver(validation)
     });
@@ -44,7 +44,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         }
     }, [isOpen]);
 
-    const onSubmit = async (data: Review) => {
+    const onSubmit = async (data: ReviewType) => {
         await axiosSaveReview(data)
         reset()
         onSuccess?.()
@@ -55,12 +55,14 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
         <>
             <h1>Create a review</h1>
             <LeadersDropdown onLeaderSelect={setLeaderId}/>
-            <h1 id={"selectedLeader"}>{leaderId}</h1>
             <form action="" onSubmit={handleSubmit(data => onSubmit(data))}>
                 <label htmlFor="review"> Enter a review.
-                    <input type="text"
+                    <input
+                        className={"border border-b-gray-900 focus:outline-none"}
+                        type="text"
                            id={'review'}
-                           {...register('description')}/>
+                           {...register('description')}
+                    />
                 </label> <br/>
                 <label htmlFor="rating"> Enter a rating.
                     <select id="rating"
@@ -73,6 +75,7 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
                     </select>
                 </label> <br/>
                 <button
+                    className={"bg-olive-500 rounded-sm"}
                     type={"submit"}>Submit</button>
             </form>
         </>

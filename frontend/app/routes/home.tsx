@@ -13,32 +13,25 @@ export function meta({}: Route.MetaArgs) {
         {name: "description", content: "Welcome to React Router!"},
     ];
 }
+
 export default function Home() {
+    const [selectedLeaderId, setSelectedLeaderId] = useState("ALL")
     const [reviews, setReviews] = useState<ReviewType[]>([])
-    const refreshData = async () => {
-        try {
-            const data = await getAllReviews();
-            setReviews(data);
-        } catch (error) {
-            console.error('Failed to fetch tasks:', error);
-        }
-    };
 
     useEffect(() => {
-        refreshData();
-    }, []);
+        getAllReviews().then(setReviews)
+    }, [])
+
+    const visibleReviews = selectedLeaderId === "ALL"
+        ? reviews
+        : reviews.filter(r => r.leader.id.toString() === selectedLeaderId)
+
+
     return (
-        <>
+        <div className={"container p-5"}>
             <h1>Reviews</h1>
-            <ReviewForm
-                isOpen={true}
-                onClose={() => {}}
-                onSuccess={() => {}}
-            />
-            <LeadersDropdown/>
-            {reviews.map(review => (
-                <ReviewCard key={review.id} review={review} />
-            ))}
-        </>
+            <LeadersDropdown onLeaderSelect={setSelectedLeaderId}/>
+            {visibleReviews.map(r => <ReviewCard key={r.id} review={r}/>)}
+        </div>
     );
 }

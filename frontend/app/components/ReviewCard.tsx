@@ -1,15 +1,18 @@
 import type {ReviewType} from "~/review/ReviewType";
+import {useEffect, useState} from "react";
+import {getAllReviews} from "~/review/ReviewService";
 
 type ReviewCardProps = {
     review: ReviewType;
 };
-export default function ReviewCard({review}: ReviewCardProps    ) {
+
+export default function ReviewCard({ review }: ReviewCardProps) {
     return (
-        <div data-testid={"card"} className="review-card">
-            <p>{review.leader.firstName}</p>
-            <p>{review.leader.lastName}</p>
-            <p>{review.rating}</p>
-            <p>{review.description}</p>
-        </div>
+        <ul className={"container p-5"}>
+            <li><strong>First: </strong>{review.leader.firstName}</li>
+            <li><strong>Last: </strong>{review.leader.lastName}</li>
+            <li><strong>Rating: </strong>{review.rating}</li>
+            <li><strong>Comments: </strong>{review.description}</li>
+        </ul>
     )
 }

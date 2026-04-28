@@ -3,9 +3,9 @@ import type {Leader} from "~/leader/LeaderType";
 
 const LeadersDropdown = ({onLeaderSelect}) => {
 
-    const [selectLeader, setSelectLeader] = useState("")
-
+    const [filterLeader, setFilterLeader] = useState("ALL")
     const [leaders, setLeaders] = useState<Leader[]>([])
+    const [selectLeader, setSelectLeader] = useState("")
 
     const url = 'http://localhost:8080'
 
@@ -15,20 +15,22 @@ const LeadersDropdown = ({onLeaderSelect}) => {
             .then(data => setLeaders(data))
     }, []);
 
+    const filteredLeaders = filterLeader === "ALL"
+        ? leaders
+        : leaders.filter(leader => leader.id.toString() === filterLeader)
+    console.log(filteredLeaders)
+
     return (
-        <div>
+        <div >
             <label htmlFor="leaderSelect">
-            <select name="leaderSelect" id="leaderSelect" onChange={(e) => {
-                setSelectLeader(e.target.value);
-                const leaderId = e.target.value;
-                onLeaderSelect(leaderId);
-            }}>
-                {leaders.map((leader) => (
-                        <option key={leader.id}>{leader.firstName}</option>
-                        )
-                    )}
-            </select>
-            <h1>Selected Leader:</h1>
+                <select onChange={(e) => onLeaderSelect(e.target.value)}>
+                    <option value="ALL">All Leaders</option>
+                    {leaders.map((leader) => (
+                        <option key={leader.id} value={leader.id}>
+                            {leader.firstName}
+                        </option>
+                    ))}
+                </select>
             </label>
         </div>
     );
