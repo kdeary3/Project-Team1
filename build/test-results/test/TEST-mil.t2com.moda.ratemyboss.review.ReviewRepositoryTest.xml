@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mil.t2com.moda.ratemyboss.review.ReviewRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-29T18:14:58.401Z" hostname="RGCASWFA1530" time="0.017">
+  <properties/>
+  <testcase name="shouldSaveANewReview()" classname="mil.t2com.moda.ratemyboss.review.ReviewRepositoryTest" time="0.007"/>
+  <system-out><![CDATA[2026-04-29T13:14:58.402-05:00  INFO 57139 --- [todo] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [mil.t2com.moda.ratemyboss.review.ReviewRepositoryTest]: ReviewRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-29T13:14:58.406-05:00  INFO 57139 --- [todo] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration mil.t2com.moda.ratemyboss.RatemybossApplication for test class mil.t2com.moda.ratemyboss.review.ReviewRepositoryTest
+2026-04-29T13:14:58.407-05:00  INFO 57139 --- [todo] [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [mil.t2com.moda.ratemyboss.review.ReviewRepositoryTest]: ReviewRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-04-29T13:14:58.409-05:00  INFO 57139 --- [todo] [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration mil.t2com.moda.ratemyboss.RatemybossApplication for test class mil.t2com.moda.ratemyboss.review.ReviewRepositoryTest
+Hibernate: insert into review (created_at,description,leader_id,rating,id) values (?,?,?,?,default)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

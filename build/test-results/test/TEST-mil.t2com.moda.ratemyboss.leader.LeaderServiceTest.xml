@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mil.t2com.moda.ratemyboss.leader.LeaderServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-29T18:14:58.230Z" hostname="RGCASWFA1530" time="0.057">
+  <properties/>
+  <testcase name="shouldGetLeaderById()" classname="mil.t2com.moda.ratemyboss.leader.LeaderServiceTest" time="0.053"/>
+  <testcase name="shouldGetAllLeaders()" classname="mil.t2com.moda.ratemyboss.leader.LeaderServiceTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

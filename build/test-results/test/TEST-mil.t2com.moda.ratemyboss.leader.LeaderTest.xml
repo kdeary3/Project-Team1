@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mil.t2com.moda.ratemyboss.leader.LeaderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-29T18:14:58.287Z" hostname="RGCASWFA1530" time="0.0">
+  <properties/>
+  <testcase name="shouldReturnLeader()" classname="mil.t2com.moda.ratemyboss.leader.LeaderTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

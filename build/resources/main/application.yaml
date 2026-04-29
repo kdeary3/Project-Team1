@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ratemyboss
+
+  datasource:
+    url: jdbc:postgresql://localhost:5445/ratemyboss
+    driver-class-name: org.postgresql.Driver
+    username: ratemyboss
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: 8080

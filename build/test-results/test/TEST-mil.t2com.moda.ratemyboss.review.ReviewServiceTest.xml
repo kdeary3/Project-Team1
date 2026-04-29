@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="mil.t2com.moda.ratemyboss.review.ReviewServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-29T18:14:58.419Z" hostname="RGCASWFA1530" time="0.024">
+  <properties/>
+  <testcase name="shouldSaveReview()" classname="mil.t2com.moda.ratemyboss.review.ReviewServiceTest" time="0.023"/>
+  <testcase name="shouldGetAllReviews()" classname="mil.t2com.moda.ratemyboss.review.ReviewServiceTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
