@@ -2,6 +2,7 @@ import type {LeaderType} from './LeaderType';
 import axios, {Axios, type AxiosResponse} from "axios";
 
 type GetLeaders = () => Promise<LeaderType[]>;
+type SaveLeader = (leader: LeaderType) => Promise<LeaderType>;
 
 export const getAllLeaders: GetLeaders = async () => {
     const result = await fetch('api/leaders', {method: 'GET'})
@@ -12,5 +13,12 @@ export const axiosGetAllLeaders: GetLeaders = async () => {
     axios
         .get('/api/leaders')
         .then((r: AxiosResponse<LeaderType[]>) => r.data)
+        .catch();
+}
+
+export const axiosSaveLeader: SaveLeader = async (leader: LeaderType) => {
+    return axios
+        .post('/api/leaders', leader)
+        .then((r: AxiosResponse<LeaderType>) => r.data)
         .catch();
 }

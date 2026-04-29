@@ -24,7 +24,7 @@ public class LeaderServiceTest {
         Leader leader = new Leader("Tairrque", "Baker", "Ceo");
         when(leaderRepository.findAll()).thenReturn(List.of(leader));
 
-        var result = leaderService.getAllLeaders();
+       List<Leader> result = leaderService.getAllLeaders();
 
         assertThat(result).hasSize(1);
         assertThat(result.get(0).getFirstName()).isEqualTo("Tairrque");
@@ -39,11 +39,26 @@ public class LeaderServiceTest {
         when(leaderRepository.findById(1L)).thenReturn(Optional.of(leader));
 
         // ACT
-        var result = leaderService.getLeaderById(1L);
+        Leader result = leaderService.getLeaderById(1L);
 
         // ASSERT
         assertThat(result.getFirstName()).isEqualTo("Tairrque");
         assertThat(result.getLastName()).isEqualTo("Baker");
         assertThat(result.getJobTitle()).isEqualTo("Ceo");
+    }
+
+    @Test
+    void shouldSaveALeader() {
+        // ARRANGE
+        Leader leader = new Leader("Tairrque", "Baker", "Janitor");
+        when(leaderRepository.save(leader)).thenReturn(leader);
+
+        // ACT
+        Leader result = leaderService.saveLeader(leader);
+
+        // ASSERT
+        assertThat(result).isEqualTo(leader);
+        verify(leaderRepository).save(leader);
+
     }
 }

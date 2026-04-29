@@ -1,6 +1,7 @@
 package mil.t2com.moda.ratemyboss.leader;
 
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 // Tells Spring "this is a business logic component — manage it"
@@ -26,6 +27,9 @@ public class LeaderService {
                 .orElseThrow(() -> new RuntimeException("Leader not found"));
     }
 
+    public Leader saveLeader(Leader leader) {
+        return leaderRepository.save(leader);
     }
+}
 
 

@@ -1,8 +1,10 @@
 package mil.t2com.moda.ratemyboss.leader;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 // Combines @Controller + @ResponseBody — returns JSON automatically
@@ -34,5 +36,11 @@ public class LeaderController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Leader saveLeader(@RequestBody Leader leader) {
+        return leaderService.saveLeader(leader);
     }
 }

@@ -1,0 +1,4 @@
+DROP SEQUENCE review_seq CASCADE;
+
+ALTER TABLE review
+    ALTER COLUMN leader_id SET NOT NULL;
