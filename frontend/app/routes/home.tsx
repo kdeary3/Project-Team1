@@ -5,7 +5,7 @@ import LeadersDropdown from "~/components/LeadersDropdown";
 import {useEffect, useState} from "react";
 import type {ReviewType} from "~/review/ReviewType";
 import ReviewCard from "~/components/ReviewCard";
-import {getAllReviews} from "~/review/ReviewService";
+import {axiosGetAllReviews, getAllReviews} from "~/review/ReviewService";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -19,7 +19,7 @@ export default function Home() {
     const [reviews, setReviews] = useState<ReviewType[]>([])
     const refreshData = async () => {
         try {
-            const data = await getAllReviews();
+            const data = await axiosGetAllReviews();
             setReviews(data);
         } catch (error) {
             console.error('Failed to fetch tasks:', error);
@@ -27,7 +27,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        getAllReviews().then(setReviews)
+        axiosGetAllReviews().then(setReviews)
     }, [])
 
     const visibleReviews = selectedLeaderId === "ALL"
@@ -36,7 +36,7 @@ export default function Home() {
 
 
     return (
-        <div className={"container p-5"}>
+        <div className={"container p-5"} data-testid="card">
             <h1>Reviews</h1>
             <LeadersDropdown onLeaderSelect={setSelectedLeaderId}/>
             {visibleReviews.map(r => <ReviewCard key={r.id} review={r}/>)}

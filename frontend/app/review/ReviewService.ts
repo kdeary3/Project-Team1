@@ -7,7 +7,8 @@ type AxiosSaveReview = (review: ReviewType) => Promise<ReviewType>;
 type AxiosDeleteReview = (id: number) => Promise<void>;
 
 export const getAllReviews: GetReviews = async () => {
-    const result = await fetch('/api/v1/review', {method: 'GET'})
+    const result = await fetch('http://localhost:8080/api/v1/review', {method: 'GET'})
+    console.log(result.json())
     return result.json();
 };
 

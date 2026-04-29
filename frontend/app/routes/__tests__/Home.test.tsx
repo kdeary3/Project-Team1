@@ -7,8 +7,7 @@ describe("Home",  () => {
 
         render(<Home/>)
         screen.logTestingPlaygroundURL()
-
-        const list = await screen.getAllByTestId('card')
+        await screen.findAllByTestId('card')
 
     })
 })
