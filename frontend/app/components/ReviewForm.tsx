@@ -7,6 +7,8 @@ import {yupResolver} from "@hookform/resolvers/yup/src";
 import type {ReviewType} from "~/review/ReviewType"
 import {useEffect, useState} from "react";
 import {axiosSaveReview} from "./ReviewService"
+import type {LeaderType} from "~/leader/LeaderType";
+import axios from "axios";
 
 
 const validation = Yup.object({
@@ -26,7 +28,15 @@ type ReviewFormProps = {
 }
 
 export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
-    const [leaderId, setLeaderId] = useState("")
+    const [leaderId, setLeaderId] = useState(0)
+    const [selectedLeader, setSelectedLeader] = useState<LeaderType | null>(null);
+    const [leaders, setLeaders] = useState<LeaderType[]>([]);
+
+    useEffect(() => {
+        axios.get('/api/leaders')
+            .then(r => setLeaders(r.data))
+            .catch(err => console.error('Failed to fetch leaders:', err));
+    }, []);
 
     const {
         register,
@@ -45,17 +55,34 @@ export const ReviewForm = ({isOpen, onClose, onSuccess}: ReviewFormProps) => {
     }, [isOpen]);
 
     const onSubmit = async (data: ReviewType) => {
-        await axiosSaveReview(data)
+        await axiosSaveReview({...data,
+            leader: selectedLeader
+    });
         reset()
-        onSuccess?.()
-        onClose()
+
     }
     console.log(leaderId)
     return (
         <>
             <h1>Create a review</h1>
-            <LeadersDropdown onLeaderSelect={setLeaderId}/>
             <form action="" onSubmit={handleSubmit(data => onSubmit(data))}>
+                {/*<LeadersDropdown onLeaderSelect={setSelectedLeader()}/>*/}
+                <label htmlFor="leader">Select Leader:</label>
+                <select
+                    id="leader"
+                    onChange={(e) => {
+                        const found = leaders.find(l => l.id === Number(e.target.value));
+                        setSelectedLeader(found || null);
+                    }}
+                >
+                    {/*SELECT A LEADER & MAPS THROUGH THEIR FIRST AND LAST NAME*/}
+                    <option value="">-- Select a Leader --</option>
+                    {leaders.map(leader => (
+                        <option key={leader.id} value={leader.id}>
+                            {leader.firstName} {leader.lastName}
+                        </option>
+                    ))}
+                </select>
                 <label htmlFor="review"> Enter a review.
                     <input
                         className={"border border-b-gray-900 focus:outline-none"}

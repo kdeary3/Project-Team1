@@ -1,4 +1,4 @@
-export type Leader = {
+export type LeaderType = {
     id: number
     firstName: String
     lastName: String
