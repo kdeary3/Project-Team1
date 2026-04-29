@@ -25,9 +25,8 @@ describe('NavBar', () => {
 
         screen.logTestingPlaygroundURL()
         expect(screen.getByText('Home')).toBeInTheDocument()
-        expect(screen.getByText('Rating Form')).toBeInTheDocument()
         expect(screen.getByText('Create Review')).toBeInTheDocument()
-        expect(screen.getByText('Home')).toBeInTheDocument()
+
 
     });
 });

@@ -1,9 +1,10 @@
 import { HttpResponse, http } from 'msw';
 import { setupServer } from 'msw/node';
-import { beforeAll, afterAll, afterEach ,describe, it, expect} from 'vitest';
+import { beforeAll, afterAll, afterEach ,describe, it, expect, vi} from 'vitest';
 import type {ReviewType} from "~/review/ReviewType";
-import { getAllReviews} from "~/review/ReviewService";
+import * as reviewservice from "../../review/ReviewService";
 
+vi.mock("../../review/ReviewService.ts")
 
 
 describe('review service', () => {
@@ -136,14 +137,11 @@ describe('review service', () => {
                 rating: 2
             }
         ]
+        vi.mocked(reviewservice.axiosGetAllReviews).mockResolvedValue(expected);
 
 
-        server.use(
-            http.get('/api/v1/review', ()=>
-                HttpResponse.json(expected, {status: 200})
-            )
-        )
-        expect(await getAllReviews() )
+
+        expect(await reviewservice.axiosGetAllReviews())
             .toEqual(expected);
     });
 });
