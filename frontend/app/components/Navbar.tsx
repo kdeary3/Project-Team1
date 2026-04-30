@@ -22,6 +22,10 @@ function NavBar() {
                           className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
                         Create Review
                     </Link>
+                    <Link to="/createLeader"
+                          className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors">
+                        Create Leader
+                    </Link>
 
                 </div>
 
