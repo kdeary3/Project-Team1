@@ -33,3 +33,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+## Gradle ##
+.gradle
+build
+
+## node ##
+node_modules
