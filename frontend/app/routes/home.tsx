@@ -17,9 +17,7 @@ export function meta({}: Route.MetaArgs) {
 const Home = () => {
     const [selectedLeaderId, setSelectedLeaderId] = useState("ALL")
     const [reviews, setReviews] = useState<ReviewType[]>([])
-    const [visibleReviews, setVisibleReviews] = useState(selectedLeaderId === "ALL"
-        ? reviews
-        : reviews.filter(r => r.leader.id.toString() === selectedLeaderId))
+    const [visibleReviews, setVisibleReviews] = useState<ReviewType[]>([])
     const refreshData = async () => {
         try {
             const data = await axiosGetAllReviews();
@@ -33,14 +31,20 @@ const Home = () => {
         axiosGetAllReviews().then(setReviews)
     }, [])
 
+    useEffect(() =>{
+        setVisibleReviews(selectedLeaderId === "ALL"
+            ? reviews
+            : reviews.filter(r => r.leader.id.toString() === selectedLeaderId))
+    }, [reviews, selectedLeaderId])
+
 
 
     return (
         <div className={"container p-5"} data-testid="card">
             <h1>Reviews</h1>
             <LeadersDropdown onLeaderSelect={setSelectedLeaderId}/>
-            {reviews &&
-            reviews.map(r => <ReviewCard key={r.id} review={r}/>)}
+            {visibleReviews &&
+            visibleReviews.map(r => <ReviewCard key={r.id} review={r}/>)}
         </div>
     );
 }
