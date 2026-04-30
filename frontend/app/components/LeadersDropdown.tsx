@@ -5,11 +5,9 @@ import {faChevronDown} from "@fortawesome/free-solid-svg-icons"
 
 const LeadersDropdown = ({onLeaderSelect}: any) => {
 
-    const [filterLeader, setFilterLeader] = useState("ALL")
     const [filteredLeaders, setFilteredLeaders] = useState<LeaderType[]>([]);
     const [leaders, setLeaders] = useState<LeaderType[]>([])
     const [isHidden, setIsHidden] = useState<boolean>(true);
-    const [selectLeader, setSelectLeader] = useState<number>(-1)
     const [name, setName] = useState<string>("");
 
     const url = 'http://localhost:8080'
