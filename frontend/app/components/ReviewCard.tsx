@@ -12,7 +12,7 @@ export default function ReviewCard({ review }: ReviewCardProps) {
             <li><strong>First: </strong>{review.leader.firstName}</li>
             <li><strong>Last: </strong>{review.leader.lastName}</li>
             <li><strong>Rating: </strong>{review.rating}</li>
-            <li><strong>Comments: </strong>{review.description}</li>
+            <li><strong>Review: </strong>{review.description}</li>
         </ul>
     )
 }
