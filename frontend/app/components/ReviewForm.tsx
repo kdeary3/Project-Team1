@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/src";
 import type {ReviewType} from "~/review/ReviewType"
 import {useEffect, useState} from "react";
-import {axiosSaveReview} from "./ReviewService"
+import {axiosSaveReview} from "~/review/ReviewService"
 import type {LeaderType} from "~/leader/LeaderType";
 import axios from "axios";
 

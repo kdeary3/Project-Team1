@@ -1,9 +1,9 @@
-import type {Leader} from "~/leader/LeaderType";
+import type {LeaderType} from "~/leader/LeaderType";
 
 export type ReviewType = {
     description: string;
     createdAt: string;
     id: number;
-    leader: Leader;
+    leader: LeaderType;
     rating: number;
 }
