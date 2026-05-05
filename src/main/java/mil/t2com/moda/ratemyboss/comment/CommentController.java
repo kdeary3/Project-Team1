@@ -17,13 +17,14 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/api/v1/comment")
-    public List<Comment> findAllComments() {
-       return commentService.findAllComments();
+    @GetMapping("/api/v1/{reviewId}/comments")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Comment> findAllCommentsByReviewId(@PathVariable Long reviewId) {
+       return commentService.findAllCommentsByReviewId(reviewId);
     }
     @GetMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment saveComment(@RequestBody Comment comment) {
+    public Comment addComment(@RequestBody Comment comment) {
         return commentService.saveComment(comment);
 
     }

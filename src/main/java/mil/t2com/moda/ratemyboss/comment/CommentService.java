@@ -18,8 +18,8 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public List<Comment> findAllComments() {
-        return commentRepository.findAll();
+    public List<Comment> findAllCommentsByReviewId(Long reviewId) {
+        return commentRepository.findAllById(reviewId);
     }
 
     public Comment saveComment(Comment comment, Review review) {
