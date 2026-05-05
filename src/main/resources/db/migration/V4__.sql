@@ -4,7 +4,7 @@ CREATE TABLE comment
 (
     id         BIGINT                      NOT NULL,
     review_id  BIGINT,
-    comment    VARCHAR(255),
+    comment    TEXT,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     CONSTRAINT pk_comment PRIMARY KEY (id)
 );

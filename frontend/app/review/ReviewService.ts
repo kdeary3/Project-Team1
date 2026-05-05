@@ -18,12 +18,14 @@ export const axiosGetAllReviews: AxiosGetReview = async () =>
         .then((r: AxiosResponse<ReviewType[]>) => r.data)
         .catch()
 
-export const axiosSaveReview: AxiosSaveReview = (review: ReviewType) => (axios
-    .post('/api/v1/review', review)
-    .then((r: AxiosResponse<ReviewType>) => r.data)
-    .catch());
+export const axiosSaveReview: AxiosSaveReview = (review: ReviewType) => (
+    axios
+        .post('/api/v1/review', review)
+        .then((r: AxiosResponse<ReviewType>) => r.data)
+        .catch());
 
-export const axiosDeleteReview: AxiosDeleteReview = (id: number) => (axios
-    .delete('/api/v1/review/' + id))
-    .then((r: AxiosResponse<void>) => r.data)
-    .catch();
+export const axiosDeleteReview: AxiosDeleteReview = (id: number) => (
+    axios
+        .delete('/api/v1/review/' + id)
+        .then((r: AxiosResponse<void>) => r.data)
+        .catch());
