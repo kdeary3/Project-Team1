@@ -24,6 +24,11 @@ public class Comment {
 
     public Comment() {}
 
+    public Comment(String comment, Review review) {
+        this.comment = comment;
+        this.review = review;
+    }
+
     public Comment(LocalDateTime createdAt, String comment, Review review) {
         this.createdAt = createdAt;
         this.comment = comment;
