@@ -1,9 +1,8 @@
 package mil.t2com.moda.ratemyboss.comment;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +19,12 @@ public class CommentController {
 
     @GetMapping("/api/v1/comment")
     public List<Comment> findAllComments() {
-        Comment comment = commentService.findAllComments();
+       return commentService.findAllComments();
     }
+    @GetMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Comment saveComment(@RequestBody Comment comment) {
+        return commentService.saveComment(comment);
 
-
+    }
 }
