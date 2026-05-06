@@ -18,7 +18,7 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("{reviewId}/comments")
+    @GetMapping("{reviewId}/comment")
     public List<Comment> findAllComments(@PathVariable Long reviewId) {
         return commentService.findAllCommentsByReviewId(reviewId);
     }

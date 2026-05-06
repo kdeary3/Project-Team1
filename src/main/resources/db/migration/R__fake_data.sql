@@ -27,15 +27,15 @@ VALUES (3, 'Charismatic but inconsistent. Team morale is high though results are
         NOW(), 9),
        (2, 'Effective at achieving outcomes but methods raise serious ethical concerns.', NOW(), 10);
 
-INSERT INTO comment (id, review_id, comment, created_at)
-VALUES
-    (1, 1, 'Morale is great, but we need more focus on actual KPIs during office hours.', NOW()),
-    (51, 2, 'The high standards are appreciated, but the "trial by fire" culture is causing burnout.', NOW()),
-    (101, 3, 'The belief he has in the team is infectious; never felt more supported.', NOW()),
-    (151, 4, 'Her dedication is inspiring, though sometimes her optimism overlooks logistical hurdles.', NOW()),
-    (201, 5, 'A pillar of discipline. The department has never been more organized.', NOW()),
-    (251, 6, 'Strategic brilliance is clear, but the lack of transparency is creating a rift in the team.', NOW()),
-    (301, 7, 'The results justify the attitude, but better communication would save us all a lot of stress.', NOW()),
-    (351, 8, 'Refreshing to have a boss who says exactly what he means. No time wasted.', NOW()),
-    (401, 9, 'Invaluable during the last PR disaster; she truly is the best in the business.', NOW()),
-    (451, 10, 'We are hitting targets, but the "how" is becoming increasingly difficult to justify.', NOW());
+-- INSERT INTO comment (review_id, comment, created_at)
+-- VALUES
+--     (1, 'Morale is great, but we need more focus on actual KPIs during office hours.', NOW()),
+--     (2, 'The high standards are appreciated, but the "trial by fire" culture is causing burnout.', NOW()),
+--     (3, 'The belief he has in the team is infectious; never felt more supported.', NOW()),
+--     (151, 4, 'Her dedication is inspiring, though sometimes her optimism overlooks logistical hurdles.', NOW()),
+--     (201, 5, 'A pillar of discipline. The department has never been more organized.', NOW()),
+--     (251, 6, 'Strategic brilliance is clear, but the lack of transparency is creating a rift in the team.', NOW()),
+--     (301, 7, 'The results justify the attitude, but better communication would save us all a lot of stress.', NOW()),
+--     (351, 8, 'Refreshing to have a boss who says exactly what he means. No time wasted.', NOW()),
+--     (401, 9, 'Invaluable during the last PR disaster; she truly is the best in the business.', NOW()),
+--     (451, 10, 'We are hitting targets, but the "how" is becoming increasingly difficult to justify.', NOW());

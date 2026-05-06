@@ -1,1 +1,0 @@
-DROP SEQUENCE review_seq CASCADE;

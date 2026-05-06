@@ -23,7 +23,7 @@ public class CommentService {
     }
 
     public List<Comment> findAllCommentsByReviewId(Long reviewId) {
-        return commentRepository.findAllById(reviewId);
+        return commentRepository.findAllByReviewId(reviewId);
     }
 
     public Comment saveComment(CommentRequestDto commentRequestDto) {
