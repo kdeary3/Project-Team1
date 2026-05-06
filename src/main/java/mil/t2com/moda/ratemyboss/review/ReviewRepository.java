@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 public interface ReviewRepository extends JpaRepository <Review, Long> {
 
+    Review getReviewById(Long id);
 }

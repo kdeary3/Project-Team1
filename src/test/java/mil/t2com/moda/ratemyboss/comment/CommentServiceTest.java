@@ -49,7 +49,7 @@ class CommentServiceTest {
 
         when(commentRepository.findAll()).thenReturn(comments);
 
-        List<Comment> results = commentService.findAllComments();
+        List<Comment> results = commentService.findAllCommentsByReviewId(review.getId());
 
         verify(commentRepository, only()).findAll();
         assertThat(results).isEqualTo(comments);

@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/")
+@CrossOrigin(origins = "*")
 public class CommentController {
 
     @Autowired
@@ -17,15 +18,14 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/api/v1/{reviewId}/comments")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Comment> findAllCommentsByReviewId(@PathVariable Long reviewId) {
-       return commentService.findAllCommentsByReviewId(reviewId);
+    @GetMapping("{reviewId}/comments")
+    public List<Comment> findAllComments(@PathVariable Long reviewId) {
+        return commentService.findAllCommentsByReviewId(reviewId);
     }
-    @GetMapping
+    @PostMapping("comment")
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment addComment(@RequestBody Comment comment) {
-        return commentService.saveComment(comment);
+    public Comment addComment(@RequestBody CommentRequestDto commentRequestDto) {
+        return commentService.saveComment(commentRequestDto);
 
     }
 }
