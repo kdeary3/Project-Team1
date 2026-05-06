@@ -36,7 +36,7 @@ class CommentServiceTest {
         assertThat(saved).isEqualTo(comment);
         verify(commentRepository, only()).save(comment);
     }
-
+//todo update to test now that we are returning the commentresponse dto
     @Test
     void shouldFindAllComments() {
         Leader leader = new Leader("Joe", "Mama", "CEO");
@@ -46,13 +46,17 @@ class CommentServiceTest {
         review.setId(1L);
 
         comments.addAll(List.of(comment, comment2));
+        List<CommentResponse> commentResponses = comments.stream().map(c -> new CommentResponse(
+                c.getComment(),
+                c.getCreatedAt()
+        )).toList();
 
         when(commentRepository.findAll()).thenReturn(comments);
 
-        List<Comment> results = commentService.findAllCommentsByReviewId(review.getId());
+        List<CommentResponse> results = commentService.findAllCommentsByReviewId(review.getId());
 
         verify(commentRepository, only()).findAll();
-        assertThat(results).isEqualTo(comments);
+        assertThat(results).isEqualTo(commentResponses);
     }
 
 }

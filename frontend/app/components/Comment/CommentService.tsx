@@ -1,20 +1,14 @@
 import axios, {type AxiosResponse} from 'axios';
-import type {CommentType} from './CommentType.ts';
+import type {CommentResponse, CommentType} from './CommentType.ts';
 
-type AxiosGetComments = () => Promise<CommentType[]>;
+type AxiosGetComments = (reviewId:number) => Promise<CommentResponse[]>;
 type AxiosSaveComment = (comment: CommentType) => Promise<CommentType>;
 type AxiosDeleteComment = (id: number) => Promise<void>;
 
-export const axiosGetAllCommentsByReviewId: AxiosGetComments = async () =>
+export const axiosGetAllCommentsByReviewId: AxiosGetComments = async (reviewId:number) =>
     axios
-        .get("/api/v1/{reviewId}/comments")
-        .then((r: AxiosResponse<CommentType[]>) => r.data)
-        .catch();
-
-export const axiosGetAllComments: AxiosGetComments = async () =>
-    axios
-        .get("/api/v1/comments")
-        .then((r: AxiosResponse<CommentType[]>) => r.data)
+        .get(`/api/v1/${reviewId}/comments`)
+        .then((r: AxiosResponse<CommentResponse[]>) => r.data)
         .catch();
 
 export const axiosSaveComment: AxiosSaveComment = (comment: CommentType) => (
