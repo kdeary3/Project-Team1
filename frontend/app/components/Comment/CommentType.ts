@@ -6,3 +6,8 @@ export type CommentType ={
     comment:string
     createdAt?: null
 }
+
+export type CommentRequest = {
+    reviewId: number,
+    comment: string
+}
