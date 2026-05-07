@@ -5,6 +5,8 @@ import mil.t2com.moda.ratemyboss.review.Review;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 public class Comment {
@@ -18,6 +20,12 @@ public class Comment {
 
     private String comment;
 
+    @ElementCollection
+    @CollectionTable(name = "reaction", joinColumns = @JoinColumn(name = "comment_id"))
+    @MapKeyColumn(name = "emoji")
+    @Column(name = "count")
+    private Map<String, Integer> reaction = new HashMap<>();
+
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -29,10 +37,11 @@ public class Comment {
         this.review = review;
     }
 
-    public Comment(LocalDateTime createdAt, String comment, Review review) {
+    public Comment(LocalDateTime createdAt, String comment, Review review, Map<String, Integer> reaction) {
         this.createdAt = createdAt;
         this.comment = comment;
         this.review = review;
+        this.reaction = reaction;
     }
 
     public Long getId() {
@@ -65,5 +74,13 @@ public class Comment {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Map<String, Integer> getReaction() {
+        return reaction;
+    }
+
+    public void setReaction(Map<String, Integer> reaction) {
+        this.reaction = reaction;
     }
 }

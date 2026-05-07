@@ -1,12 +1,13 @@
 package mil.t2com.moda.ratemyboss.comment;
 
+import jakarta.persistence.Id;
 import mil.t2com.moda.ratemyboss.leader.Leader;
 import mil.t2com.moda.ratemyboss.review.Review;
 import mil.t2com.moda.ratemyboss.review.ReviewRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @Service
 public class CommentService {
@@ -32,4 +33,6 @@ public class CommentService {
         Comment comment = new Comment(commentRequestDto.getComment(), review);
         return commentRepository.save(comment);
     }
+
+    public Comment reactToComment
 }
