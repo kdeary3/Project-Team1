@@ -19,7 +19,7 @@ public class CommentController {
     }
 
     @GetMapping("{reviewId}/comments")
-    public List<CommentResponse> findAllComments(@PathVariable Long reviewId) {
+    public List<Comment> findAllComments(@PathVariable Long reviewId) {
         return commentService.findAllCommentsByReviewId(reviewId);
     }
 
@@ -31,7 +31,7 @@ public class CommentController {
 
     @PatchMapping("comment")
     @ResponseStatus(HttpStatus.CREATED)
-    public Comment updateComment(@RequestBody Comment comment) {
-        return commentService.saveComment(comment);
+    public Comment updateComment(@RequestBody CommentPatchDto comment) {
+        return commentService.updateComment(comment);
     }
 }

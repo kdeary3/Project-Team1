@@ -60,7 +60,7 @@ export default function ReviewCard({review}: ReviewCardProps) {
             const result = await response.json();
             console.log(result);
         } catch (error) {
-            console.error(error.message);
+            console.error(error);
         }
 
     }
@@ -99,7 +99,7 @@ return (
 
         </form>
 
-        {comments.map((comment: CommentResponse) => (<CommentHistory {...comment} />))}
+        {comments.map((comment: CommentResponse) => (<CommentHistory reviewId={review.id} created_at={comment.created_at} id={comment.id} comment={comment.comment} angryEmoji={comment.angryEmoji} happyEmoji={comment.happyEmoji} poopEmoji={comment.poopEmoji} sadEmoji={comment.sadEmoji} />))}
 
     </div>
 

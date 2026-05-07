@@ -20,10 +20,10 @@ public class Comment {
 
     private String comment;
 
-    private Integer happyEmoji = 0;
-    private Integer sadEmoji = 0;
-    private Integer angryEmoji = 0;
-    private Integer poopEmoji = 0;
+    private Integer happyEmoji;
+    private Integer sadEmoji;
+    private Integer angryEmoji;
+    private Integer poopEmoji;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
