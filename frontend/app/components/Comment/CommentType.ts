@@ -11,3 +11,8 @@ export type CommentRequest = {
     reviewId: number,
     comment: string
 }
+
+export type CommentResponse = {
+    comment:string,
+    created_at:string
+}

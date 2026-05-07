@@ -1,10 +1,12 @@
 import type {ReviewType} from "~/review/ReviewType";
-import type {CommentRequest} from "~/components/Comment/CommentType";
+import type {CommentRequest, CommentResponse} from "~/components/Comment/CommentType";
 import {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
+import {set, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/src";
 import * as Yup from "yup";
 import {date, number, string} from "yup";
+import {axiosGetAllCommentsByReviewId} from "~/components/Comment/CommentService";
+import CommentHistory from "~/components/Comment/CommentHistory";
 
 
 const validation = Yup.object({
@@ -27,6 +29,17 @@ export default function ReviewCard({review}: ReviewCardProps) {
         mode: "onBlur",
         resolver: yupResolver(validation)
     });
+
+    const [comments, setComments] = useState<CommentResponse[]>([]);
+
+    const getComments = async () => {
+        const response = await axiosGetAllCommentsByReviewId(review.id)
+        setComments(response)
+    }
+
+    useEffect(() => {
+        getComments();
+    }, []);
 
     const onSubmit = async (data: CommentRequest) => {
         const url = "http://localhost:8080/api/v1/comment"
@@ -85,6 +98,8 @@ return (
             </div>
 
         </form>
+
+        {comments.map((comment: CommentResponse) => (<CommentHistory {...comment} />))}
 
     </div>
 

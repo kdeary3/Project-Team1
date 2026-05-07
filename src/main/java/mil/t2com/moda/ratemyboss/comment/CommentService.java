@@ -23,8 +23,13 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public List<Comment> findAllCommentsByReviewId(Long reviewId) {
-        return commentRepository.findAllByReviewId(reviewId);
+    public List<CommentResponse> findAllCommentsByReviewId(Long reviewId) {
+       return commentRepository.findAllByReviewId(reviewId).stream()
+               .map(c -> new CommentResponse(
+                       c.getComment(),
+                       c.getCreatedAt()
+               )).toList();
+
     }
 
     public Comment saveComment(CommentRequestDto commentRequestDto) {
