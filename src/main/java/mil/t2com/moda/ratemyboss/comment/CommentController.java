@@ -22,10 +22,16 @@ public class CommentController {
     public List<CommentResponse> findAllComments(@PathVariable Long reviewId) {
         return commentService.findAllCommentsByReviewId(reviewId);
     }
+
     @PostMapping("comment")
     @ResponseStatus(HttpStatus.CREATED)
     public Comment addComment(@RequestBody CommentRequestDto commentRequestDto) {
         return commentService.saveComment(commentRequestDto);
+    }
 
+    @PatchMapping("comment")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Comment updateComment(@RequestBody Comment comment) {
+        return commentService.saveComment(comment);
     }
 }

@@ -20,11 +20,10 @@ public class Comment {
 
     private String comment;
 
-    @ElementCollection
-    @CollectionTable(name = "reaction", joinColumns = @JoinColumn(name = "comment_id"))
-    @MapKeyColumn(name = "emoji")
-    @Column(name = "count")
-    private Map<String, Integer> reaction = new HashMap<>();
+    private Integer happyEmoji = 0;
+    private Integer sadEmoji = 0;
+    private Integer angryEmoji = 0;
+    private Integer poopEmoji = 0;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -41,7 +40,16 @@ public class Comment {
         this.createdAt = createdAt;
         this.comment = comment;
         this.review = review;
-        this.reaction = reaction;
+    }
+
+    public Comment(Review review, String comment, Integer happyEmoji, Integer sadEmoji, Integer angryEmoji, Integer poopEmoji, LocalDateTime createdAt) {
+        this.review = review;
+        this.comment = comment;
+        this.happyEmoji = happyEmoji;
+        this.sadEmoji = sadEmoji;
+        this.angryEmoji = angryEmoji;
+        this.poopEmoji = poopEmoji;
+        this.createdAt = createdAt;
     }
 
     public Long getId() {
@@ -76,11 +84,35 @@ public class Comment {
         this.createdAt = createdAt;
     }
 
-    public Map<String, Integer> getReaction() {
-        return reaction;
+    public Integer getHappyEmoji() {
+        return happyEmoji;
     }
 
-    public void setReaction(Map<String, Integer> reaction) {
-        this.reaction = reaction;
+    public void setHappyEmoji(Integer happyEmoji) {
+        this.happyEmoji = happyEmoji;
+    }
+
+    public Integer getSadEmoji() {
+        return sadEmoji;
+    }
+
+    public void setSadEmoji(Integer sadEmoji) {
+        this.sadEmoji = sadEmoji;
+    }
+
+    public Integer getAngryEmoji() {
+        return angryEmoji;
+    }
+
+    public void setAngryEmoji(Integer angryEmoji) {
+        this.angryEmoji = angryEmoji;
+    }
+
+    public Integer getPoopEmoji() {
+        return poopEmoji;
+    }
+
+    public void setPoopEmoji(Integer poopEmoji) {
+        this.poopEmoji = poopEmoji;
     }
 }
